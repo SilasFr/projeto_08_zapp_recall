@@ -13,7 +13,7 @@ export default function App() {
 		return (
 			<div className="start">
 				<div className="logo">
-					<h1>ZapRecall</h1>
+					<img src='./assets/logo.png'/>
 				</div>
 				<div className="login">
 					<input type="text" placeholder="Sua meta de zaps" />

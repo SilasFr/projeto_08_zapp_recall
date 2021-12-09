@@ -37,29 +37,47 @@ export default function Flashcards() {
         }
     ]
     let index = 0
-    const [flashcard, setflashcard] = React.useState(userFlashcards[0])
+    const [flashcard, setflashcard] = React.useState([{
+        question: 'O que é JSX?',
+        answer: 'Uma extensão de linguagem do JavaScript'
+    }])
 
     function next() {
-        index++
-        const nextFlashcard = Array.of(userFlashcards)
-        if (index % 2 === 0) {
-            return setflashcard(nextFlashcard[index])
-        } else {
-            return setflashcard(userFlashcards[index])
+        for(let i=0; i<userFlashcards.length; i++){
+            const item = userFlashcards[i]
+            if(flashcard[flashcard.length-1].question === item.question && userFlashcards[i+1] !== undefined){
+
+                const nextFlashcard = userFlashcards[i+1]
+                return setflashcard([...flashcard, nextFlashcard])
+
+            }
         }
     }
 
     return (
         <>
+            <header className='navbar'>
+                <img src='./assets/logo-mini.png' />
+            </header>
             <div className='card'>
-                <div className='question'>{flashcard.question}</div>
-                <div className='answer'> {flashcard.answer} </div>
+                <div className='front-face'>
+                    <div className='flashcard-index'>{index}/{userFlashcards.length}</div>
+                    <div className='front-face-question'>
+                        {flashcard[flashcard.length - 1].question}
+                    </div>
+                    <div className='next'
+                        onClick={next} >
+                        <img src='./assets/turn.png' />
+                    </div>
+                </div>
+                <div className='back-face'>
+                    <div className='back-face-question'>
+                        {flashcard[flashcard.length - 1].answer}
+                    </div>
+                </div>
             </div>
 
-            <div className='next'
-                onClick={next} >
-                Next
-            </div>
+
         </>
     )
 }

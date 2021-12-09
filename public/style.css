@@ -40,3 +40,46 @@ body{
 .big-btn ion-icon{
     color: #e2e245;
 }
+
+.navbar{
+    width: 100%;
+
+    position: fixed;
+    top: 25px;
+    left: 25px;
+}
+
+.navbar img{
+    width: 141px;
+}
+
+.front-face{
+    width: 392px;
+    height: 392px;
+    /* height: 575.75px; */
+    background: #FFFFFF;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.back-face{
+    width: 392px;
+    height: 392px;
+    /* height: 575.75px; */
+    background: #FFFFFF;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-face-question{
+
+}
