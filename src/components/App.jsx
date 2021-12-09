@@ -2,32 +2,30 @@ import React from 'react'
 import Flashcards from './Flashcards'
 
 export default function App() {
+	const [screen, setScreen] = React.useState(<Start />)
 	return (
 		<>
-			<Screen/>
+			{screen}
 		</>
 	)
-}
+	function Start() {
+		let target = 0
+		return (
+			<div className="start">
+				<div className="logo">
+					<h1>ZapRecall</h1>
+				</div>
+				<div className="login">
+					<input type="text" placeholder="Sua meta de zaps" />
+					<button className='big-btn' onClick={() => {
+						setScreen(<Flashcards />)
+					}}>Praticar React
+					<ion-icon name="play-forward-sharp"></ion-icon>
+					
+					</button>
+				</div>
+			</div>
+		)
+	}
 
-function Screen(){
-	return (
-	   <Start/>
-	)
-}
-
-function Start(){
-	let target = 0
-	return(
-		<div className="start">
-		   <div className="logo">
-			   <h1>ZapRecall</h1>
-		   </div>
-		   <div className="login">
-			   <input type="text" placeholder="Sua meta de zaps"/>
-			   <button onClick= {()=>{
-					 Flashcards(target)
-				 }}>Praticar React</button>
-		   </div>
-	   </div>
-	)
 }

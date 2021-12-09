@@ -1,7 +1,8 @@
 import React from 'react'
+import App from './App'
 
 export default function Flashcards() {
-    const cards = [
+    const userFlashcards = [
         {
             question: 'O que é JSX?',
             answer: 'Uma extensão de linguagem do JavaScript'
@@ -35,16 +36,30 @@ export default function Flashcards() {
             answer: 'dizer para o React quais informações quando atualizadas devem renderizar a tela novamente'
         }
     ]
+    let index = 0
+    const [flashcard, setflashcard] = React.useState(userFlashcards[0])
+
+    function next() {
+        index++
+        const nextFlashcard = Array.of(userFlashcards)
+        if (index % 2 === 0) {
+            return setflashcard(nextFlashcard[index])
+        } else {
+            return setflashcard(userFlashcards[index])
+        }
+    }
+
     return (
         <>
-            {cards.map((item) => {
-                <div className='front-facing-card'>
-                    <div className='index'>{1}</div>
-                    <div className='question'>item.question</div>
-                </div>
-            })}
+            <div className='card'>
+                <div className='question'>{flashcard.question}</div>
+                <div className='answer'> {flashcard.answer} </div>
+            </div>
 
+            <div className='next'
+                onClick={next} >
+                Next
+            </div>
         </>
-
     )
 }
