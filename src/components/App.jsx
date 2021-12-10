@@ -2,7 +2,7 @@ import React from 'react'
 import Flashcards from './Flashcards'
 
 export default function App() {
-	const [screen, setScreen] = React.useState(<Start />)
+	const [screen, setScreen] = React.useState(<Flashcards />)
 	return (
 		<>
 			{screen}

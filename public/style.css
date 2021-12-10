@@ -14,22 +14,34 @@ body{
 
 .start{
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 176px;
 }
 
 .login{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
+}
+
+::placeholder, :-ms-input-placeholder, ::-webkit-input-placeholder{
+    margin-left: 20px;
+
+}
+
+.login input{
+    height: 49px;
+    border-radius: 12px;
 }
 
 .big-btn{
     background-color: #fff;
     border: 3px solid yellow;
-    border-radius: 5px;
-    height: 40px;
+    border-radius: 12px;
     font-weight: bold;
+    width: 345px;
+    height: 72px;
 
     display: flex;
     align-items: center;
@@ -53,33 +65,109 @@ body{
     width: 141px;
 }
 
-.front-face{
+.card{
     width: 392px;
-    height: 392px;
-    /* height: 575.75px; */
+    height: 575.75px;
     background: #FFFFFF;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
     border-radius: 12px;
 
+    position: relative;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.flashcard-index{
+    position: absolute;
+    top: 13px;
+    right: 13px;
+
+}
+
+.front-face{
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    border-radius: 12px;
+
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 33px;
 }
 
 .back-face{
-    width: 392px;
-    height: 392px;
-    /* height: 575.75px; */
-    background: #FFFFFF;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    height: 100%;
+    padding: 40px;
     border-radius: 12px;
 
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    transform: rotateY(180deg);
+
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 19px;
+
 }
 
-.back-face-question{
+.back-face-results{
+    width: 100%;
+    position: absolute;
+    bottom: 18px;
 
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.back-face-results .result{
+    width: 65px;
+    height: 48px;
+    border-radius: 12px;
+    background: none;
+
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.awful{
+    border: 3px solid black;
+}
+
+.bad{
+    border: 3px solid #F74848;
+}
+
+.good{
+    border: 3px solid #62DB38;
+}
+
+.great{
+    border: 3px solid #FFEF61;
+}
+
+.card:hover .back-face {
+    transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+    transform: rotateY(-180deg);
 }

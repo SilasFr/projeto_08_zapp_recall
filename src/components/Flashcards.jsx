@@ -43,11 +43,11 @@ export default function Flashcards() {
     }])
 
     function next() {
-        for(let i=0; i<userFlashcards.length; i++){
+        for (let i = 0; i < userFlashcards.length; i++) {
             const item = userFlashcards[i]
-            if(flashcard[flashcard.length-1].question === item.question && userFlashcards[i+1] !== undefined){
+            if (flashcard[flashcard.length - 1].question === item.question && userFlashcards[i + 1] !== undefined) {
 
-                const nextFlashcard = userFlashcards[i+1]
+                const nextFlashcard = userFlashcards[i + 1]
                 return setflashcard([...flashcard, nextFlashcard])
 
             }
@@ -60,8 +60,8 @@ export default function Flashcards() {
                 <img src='./assets/logo-mini.png' />
             </header>
             <div className='card'>
+                <div className='flashcard-index'>{flashcard.length}/{userFlashcards.length}</div>
                 <div className='front-face'>
-                    <div className='flashcard-index'>{index}/{userFlashcards.length}</div>
                     <div className='front-face-question'>
                         {flashcard[flashcard.length - 1].question}
                     </div>
@@ -69,10 +69,17 @@ export default function Flashcards() {
                         onClick={next} >
                         <img src='./assets/turn.png' />
                     </div>
+
                 </div>
                 <div className='back-face'>
                     <div className='back-face-question'>
                         {flashcard[flashcard.length - 1].answer}
+                    </div>
+                    <div className='back-face-results'>
+                        <button className='result awful'>Aprendi agora</button>
+                        <button className='result bad'>Não lembrei</button>
+                        <button className='result good'>Lembrei com esforço</button>
+                        <button className='result great'>Zap!</button>
                     </div>
                 </div>
             </div>
