@@ -1,5 +1,7 @@
 import React from 'react'
 import App from './App'
+import miniLogo from '../assets/logo-mini.png'
+import turn from '../assets/turn.png'
 
 export default function Flashcards() {
     const userFlashcards = [
@@ -36,18 +38,41 @@ export default function Flashcards() {
             answer: 'dizer para o React quais informações quando atualizadas devem renderizar a tela novamente'
         }
     ]
-    let index = 0
     const [flashcard, setflashcard] = React.useState([{
         question: 'O que é JSX?',
         answer: 'Uma extensão de linguagem do JavaScript'
     }])
 
+    const results = [
+        { level: 'awful', text: 'Aprendi agora' },
+        { level: 'bad', text: 'Não lembrei' },
+        { level: 'good', text: 'Lembrei com esforço' },
+        { level: 'great', text: 'Zap!' },
+    ]
+
+    const buttons = results.map((result) => {
+        return (
+
+            <button className={`result ${result.level}`}
+                onClick={() => setBackFaceButton(
+                    <div className='next'
+                        onClick={()=>next()} >
+                        <img src='./assets/turn.png' />
+                    </div>)}>
+                {result.text}
+            </button>
+        )
+    })
+
+    const [backFaceButton, setBackFaceButton] = React.useState(buttons)
+
     function next() {
         for (let i = 0; i < userFlashcards.length; i++) {
             const item = userFlashcards[i]
             if (flashcard[flashcard.length - 1].question === item.question && userFlashcards[i + 1] !== undefined) {
-
+                console.log('bbb')
                 const nextFlashcard = userFlashcards[i + 1]
+                setBackFaceButton(buttons)
                 return setflashcard([...flashcard, nextFlashcard])
 
             }
@@ -57,7 +82,7 @@ export default function Flashcards() {
     return (
         <>
             <header className='navbar'>
-                <img src='./assets/logo-mini.png' />
+                <img src={miniLogo} />
             </header>
             <div className='card'>
                 <div className='flashcard-index'>{flashcard.length}/{userFlashcards.length}</div>
@@ -66,8 +91,8 @@ export default function Flashcards() {
                         {flashcard[flashcard.length - 1].question}
                     </div>
                     <div className='next'
-                        onClick={next} >
-                        <img src='./assets/turn.png' />
+                        onClick={next}>
+                        <img src={turn} />
                     </div>
 
                 </div>
@@ -76,10 +101,7 @@ export default function Flashcards() {
                         {flashcard[flashcard.length - 1].answer}
                     </div>
                     <div className='back-face-results'>
-                        <button className='result awful'>Aprendi agora</button>
-                        <button className='result bad'>Não lembrei</button>
-                        <button className='result good'>Lembrei com esforço</button>
-                        <button className='result great'>Zap!</button>
+                        {backFaceButton}
                     </div>
                 </div>
             </div>

@@ -1,19 +1,22 @@
 import React from 'react'
 import Flashcards from './Flashcards'
+import logo from '../assets/logo.png'
+import Success from './Success'
+import Fail from './Fail'
 
 export default function App() {
-	const [screen, setScreen] = React.useState(<Flashcards />)
+	const [screen, setScreen] = React.useState(<Fail />)
 	return (
 		<>
 			{screen}
 		</>
 	)
-	function Start() {
+	function Start(props) {
 		let target = 0
 		return (
 			<div className="start">
 				<div className="logo">
-					<img src='./assets/logo.png'/>
+					<img src={logo}/>
 				</div>
 				<div className="login">
 					<input type="text" placeholder="Sua meta de zaps" />

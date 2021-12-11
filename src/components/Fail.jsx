@@ -1,15 +1,21 @@
 import React from "react";
 import App from "./App";
+import sad from '../assets/sad.png'
 
-export default function Fail () {
+export default function Fail (props) {
+    let failMsg = `Você esqueceu ${props.fail} flashcards..Não desanime! Na próxima você consegue!`
     return (
         <>
-            <div> <h1 className='success-title'>Putz... 😥️</h1> </div>
-            <p>Você esqueceu{'fail'} flashcards</p>
-            <button className='big-btn' onClick={ }>
-                Tentar novamente
-                <ion-icon name="play-forward-sharp"></ion-icon>
-            </button>
+            <div className="fail-box">
+                <h1 className='fail-title'>Parabéns!
+                    <img src={sad} />
+                </h1>
+                <p className="fail-paragraph">{failMsg}</p>
+                <button className='big-btn fail-btn'>
+                    Tentar novamente
+                    <ion-icon name="play-forward-sharp"></ion-icon>
+                </button>
+            </div>
         </>
     )
 }
