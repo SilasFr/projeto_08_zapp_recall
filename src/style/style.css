@@ -164,11 +164,11 @@ body{
     border: 3px solid #FFEF61;
 }
 
-.card:focus .back-face {
+.card:hover .back-face {
     transform: rotateY(0deg);
 }
 
-.card:focus .front-face {
+.card:hover .front-face {
     transform: rotateY(-180deg);
 }
 

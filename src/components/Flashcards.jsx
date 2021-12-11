@@ -1,9 +1,9 @@
 import React from 'react'
-import App from './App'
-import miniLogo from '../assets/logo-mini.png'
+import Card from './Card'
 import turn from '../assets/turn.png'
 
-export default function Flashcards() {
+export default function Flashcards({ setScreen }) {
+
     const userFlashcards = [
         {
             question: 'O que é JSX?',
@@ -54,17 +54,21 @@ export default function Flashcards() {
         return (
 
             <button className={`result ${result.level}`}
-                onClick={() => setBackFaceButton(
-                    <div className='next'
-                        onClick={()=>next()} >
-                        <img src='./assets/turn.png' />
-                    </div>)}>
+                onClick={goToNextButton}>
                 {result.text}
             </button>
         )
     })
 
     const [backFaceButton, setBackFaceButton] = React.useState(buttons)
+
+    function goToNextButton() {
+        setBackFaceButton(
+            <div className='next'
+                onClick={next} >
+                <img src={turn} />
+            </div>)
+    }
 
     function next() {
         for (let i = 0; i < userFlashcards.length; i++) {
@@ -78,35 +82,13 @@ export default function Flashcards() {
             }
         }
     }
-
     return (
-        <>
-            <header className='navbar'>
-                <img src={miniLogo} />
-            </header>
-            <div className='card'>
-                <div className='flashcard-index'>{flashcard.length}/{userFlashcards.length}</div>
-                <div className='front-face'>
-                    <div className='front-face-question'>
-                        {flashcard[flashcard.length - 1].question}
-                    </div>
-                    <div className='next'
-                        onClick={next}>
-                        <img src={turn} />
-                    </div>
-
-                </div>
-                <div className='back-face'>
-                    <div className='back-face-question'>
-                        {flashcard[flashcard.length - 1].answer}
-                    </div>
-                    <div className='back-face-results'>
-                        {backFaceButton}
-                    </div>
-                </div>
-            </div>
-
-
-        </>
+        <Card setScreen={setScreen}
+            flashcard={flashcard}
+            userFlashcards={userFlashcards}
+            next={next} backFaceButton={backFaceButton}
+            setBackFaceButton={setBackFaceButton}
+            goToNextButton={goToNextButton}
+        />
     )
 }

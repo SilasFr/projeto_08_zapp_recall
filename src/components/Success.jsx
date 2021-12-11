@@ -4,7 +4,6 @@ import party from '../assets/party.png'
 
 export default function Success(props) {
     return (
-        <>
             <div className="success-box">
                 <h1 className='success-title'>Parabéns!
                     <img src={party} />
@@ -15,6 +14,5 @@ export default function Success(props) {
                     <ion-icon name="play-forward-sharp"></ion-icon>
                 </button>
             </div>
-        </>
     )
 }
