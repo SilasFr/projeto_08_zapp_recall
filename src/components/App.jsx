@@ -20,14 +20,14 @@ export default function App() {
 				<div className="login">
 					<input
 						value={flashcardTarget}
-						onChange={event => setFlashcardTarget(parseInt(event.target.value))}
+						onChange={event => setFlashcardTarget(event.target.value)}
 						type="text"
 						placeholder="Sua meta de zaps" />
 					<button data-identifier="start-zap-recall" className='big-btn' onClick={() => {
-						if (typeof (flashcardTarget) !== 'number' && flashcardTarget !== '') {
+						if (isNaN(parseInt(flashcardTarget)) && flashcardTarget !== '') {
 							setFlashcardTarget('')
 							return alert('digite um número inteiro como meta')
-						} else return setScreen(<Flashcards setScreen={setScreen} />)
+						} else return setScreen(<Flashcards setScreen={setScreen} flashcardTarget={flashcardTarget} />)
 					}}>Praticar React
 						<ion-icon name="play-forward-sharp"></ion-icon>
 					</button>

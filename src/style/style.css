@@ -39,14 +39,16 @@ body{
     background-color: #fff;
     border: 3px solid yellow;
     border-radius: 12px;
-    font-weight: bold;
     width: 345px;
     height: 72px;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .big-btn ion-icon{

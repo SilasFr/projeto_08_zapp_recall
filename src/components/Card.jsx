@@ -32,6 +32,8 @@ export default function Card(props) {
         setBorder(event.target.classList[1])
         if (event.target.innerHTML === 'Não lembrei') {
             props.setFailure(props.fail + 1)
+        }else if(event.target.innerHTML === 'Zap!'){
+            props.setZap(props.zap + 1)
         }
     }
 
@@ -41,10 +43,10 @@ export default function Card(props) {
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')
-        } else if (props.fail === 0) {
+        } else if (props.fail === 0 && props.zapp === props.flashcardTarget) {
             return props.setScreen(<Success setScreen={props.setScreen} />)
-        } else if (props.fail > 0) {
-            return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail} />)
+        } else {
+            return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail} flashcardTarget={props.flashcardTarget} />)
         }
     }
 

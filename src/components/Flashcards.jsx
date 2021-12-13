@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card'
 
-export default function Flashcards({ setScreen }) {
+export default function Flashcards({ setScreen, flashcardTarget }) {
 
     const userFlashcards = [
         {
@@ -38,12 +38,16 @@ export default function Flashcards({ setScreen }) {
         }
     ]
     const [fail, setFailure] = React.useState(0)
+    const [zap, setZap] = React.useState(0)
 
     return (
         <Card setScreen={setScreen}
             userFlashcards={userFlashcards}
             fail={fail}
             setFailure={setFailure}
+            flashcardTarget={flashcardTarget}
+            zap={zap}
+            setZap={setZap}
         />
     )
 }
