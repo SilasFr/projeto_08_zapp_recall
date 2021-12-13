@@ -3,6 +3,7 @@ import Card from './Card'
 import turn from '../assets/turn.png'
 
 export default function Flashcards({ setScreen }) {
+    console.log(setScreen)
 
     const userFlashcards = [
         {

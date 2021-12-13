@@ -26,6 +26,7 @@ export default function Card(props) {
 
     function nextOne() {
         if ((index + 1) < props.userFlashcards.length) {
+            console.log(props.setScreen)
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')

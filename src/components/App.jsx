@@ -5,14 +5,16 @@ import Success from './Success'
 import Fail from './Fail'
 
 export default function App() {
-	const [screen, setScreen] = React.useState(<Flashcards />)
+	const [screen, setScreen] = React.useState(<Start />)
+
 	return (
 		<>
 			{screen}
 		</>
 	)
-	function Start(props) {
+	function Start() {
 		const [flashcardTarget, setFlashcardTarget] = React.useState('')
+		console.log(flashcardTarget)
 		return (
 			<div className="start">
 				<div className="logo">
@@ -21,11 +23,14 @@ export default function App() {
 				<div className="login">
 					<input
 						value={flashcardTarget}
-						onChange={event => setFlashcardTarget(event)}
+						onChange={event => setFlashcardTarget(event.target.value)}
 						type="text"
 						placeholder="Sua meta de zaps" />
 					<button className='big-btn' onClick={() => {
-						setScreen(<Flashcards setScreen={setScreen} />)
+						if (!Number.isNaN(flashcardTarget)) {
+							setFlashcardTarget('')
+							return alert('digite um número inteiro como meta')
+						} else return setScreen(<Flashcards setScreen={setScreen} />)
 					}}>Praticar React
 						<ion-icon name="play-forward-sharp"></ion-icon>
 
