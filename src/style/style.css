@@ -116,12 +116,28 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: rotateY(180deg);
 
     font-weight: normal;
     font-size: 20px;
     line-height: 19px;
+}
 
+.back-face-question{
+    width: 50%;
+    min-height: fit-content;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+
+    position: absolute;
+    top: 19px;
+}
+
+.back-face-answer{
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .back-face-results{
@@ -145,7 +161,6 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-
 }
 
 .awful{
@@ -162,14 +177,6 @@ body{
 
 .great{
     border: 3px solid #FFEF61;
-}
-
-.card:hover .back-face {
-    transform: rotateY(0deg);
-}
-
-.card:hover .front-face {
-    transform: rotateY(-180deg);
 }
 
 .success-box, .fail-box{

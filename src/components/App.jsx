@@ -5,7 +5,7 @@ import Success from './Success'
 import Fail from './Fail'
 
 export default function App() {
-	const [screen, setScreen] = React.useState(<Start />)
+	const [screen, setScreen] = React.useState(<Flashcards />)
 	return (
 		<>
 			{screen}
