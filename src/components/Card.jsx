@@ -1,6 +1,8 @@
 import React from "react";
 import Start from './App'
 import Success from "./Success";
+import Fail from "./Fail";
+
 import miniLogo from '../assets/logo-mini.png'
 import turn from '../assets/turn.png'
 
@@ -18,38 +20,49 @@ export default function Card(props) {
     const buttons = results.map((result) => {
         return (
             <button className={`result ${result.level}`}
-                onClick={ ()=>setBackFaceButton('next') }>
+                onClick={memory}>
                 {result.text}
             </button>
         )
     })
 
+    let fail = 0
+
+    function memory(event){
+        setBackFaceButton('next')
+        if(event.target.innerHTML === 'Não lembrei'){
+            fail++
+            console.log(fail)
+        }
+    }
+
     function nextOne() {
         if ((index + 1) < props.userFlashcards.length) {
-            console.log(props.setScreen)
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')
+        } else if(fail === 0) {
+            return props.setScreen(<Success setScreen={props.setScreen}/>)
         } else {
-            return props.setScreen(<Success/>)
+            return props.setScreen(<Fail setScreen={props.setScreen} fail={fail}/>)
         }
     }
 
     return (
         <>
             <header className='navbar'>
-                <img onClick={() => props.setScreen(<Start />)} src={miniLogo} />
+                <img onClick={() => props.setScreen(<Start />)} src={miniLogo} alt="Zapp Recall"/>
             </header>
-            <div className='card'>
-                <div className='flashcard-index'>{index + 1}/{props.userFlashcards.length}</div>
+            <div className='card' data-identifier="flashcard">
+                <div data-identifier="counter" className='flashcard-index'>{index + 1}/{props.userFlashcards.length}</div>
                 {frontFace === true ?
                     <div className='front-face'>
                         <div className='front-face-question'>
                             {props.userFlashcards[index].question}
                         </div>
-                        <div className='next'
+                        <div data-identifier="arrow" className='next'
                             onClick={() => setFrontFace(false)}>
-                            <img src={turn} />
+                            <img src={turn} alt="arrow"/>
                         </div>
 
                     </div> :
@@ -63,7 +76,7 @@ export default function Card(props) {
                                 buttons :
                                 <div className='next'
                                     onClick={nextOne}>
-                                    <img src={turn} />
+                                    <img src={turn} alt="arrow" />
                                 </div>
                             }
                         </div>
