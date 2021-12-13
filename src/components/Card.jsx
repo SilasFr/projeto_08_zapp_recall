@@ -43,7 +43,7 @@ export default function Card(props) {
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')
-        } else if (props.fail === 0 && props.zapp === props.flashcardTarget) {
+        } else if ((props.fail === 0 && props.zapp >= props.flashcardTarget) || props.flashcardTarget==='') {
             return props.setScreen(<Success setScreen={props.setScreen} />)
         } else {
             return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail} flashcardTarget={props.flashcardTarget} />)
