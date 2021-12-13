@@ -26,13 +26,11 @@ export default function Card(props) {
         )
     })
 
-    let fail = 0
-
     function memory(event){
         setBackFaceButton('next')
         if(event.target.innerHTML === 'Não lembrei'){
-            fail++
-            console.log(fail)
+            props.setFailure(props.fail +1 )
+            console.log(props.fail)
         }
     }
 
@@ -41,10 +39,10 @@ export default function Card(props) {
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')
-        } else if(fail === 0) {
+        } else if(props.fail === 0) {
             return props.setScreen(<Success setScreen={props.setScreen}/>)
-        } else {
-            return props.setScreen(<Fail setScreen={props.setScreen} fail={fail}/>)
+        } else if(props.fail > 0){
+            return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail}/>)
         }
     }
 

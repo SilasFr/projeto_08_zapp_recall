@@ -37,10 +37,13 @@ export default function Flashcards({ setScreen }) {
             answer: 'dizer para o React quais informações quando atualizadas devem renderizar a tela novamente'
         }
     ]
+    const [fail, setFailure] = React.useState(0)
 
     return (
         <Card setScreen={setScreen}
             userFlashcards={userFlashcards}
+            fail={fail}
+            setFailure={setFailure}
         />
     )
 }
