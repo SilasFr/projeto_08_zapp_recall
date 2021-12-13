@@ -24,8 +24,7 @@ export default function App() {
 						type="text"
 						placeholder="Sua meta de zaps" />
 					<button data-identifier="start-zap-recall" className='big-btn' onClick={() => {
-						if (typeof(flashcardTarget) !== 'number' && flashcardTarget!=='') {
-							console.log(typeof(flashcardTarget))
+						if (typeof (flashcardTarget) !== 'number' && flashcardTarget !== '') {
 							setFlashcardTarget('')
 							return alert('digite um número inteiro como meta')
 						} else return setScreen(<Flashcards setScreen={setScreen} />)

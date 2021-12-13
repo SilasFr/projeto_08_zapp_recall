@@ -11,8 +11,9 @@ export default function Card(props) {
     const [index, setIndex] = React.useState(0)
     const [frontFace, setFrontFace] = React.useState(true)
     const [backFaceButton, setBackFaceButton] = React.useState('buttons')
+    const [border, setBorder] = React.useState('boderless')
     const results = [
-        { level: 'awful', text: 'Aprendi agora' },
+        { level: 'neutral', text: 'Aprendi agora' },
         { level: 'bad', text: 'Não lembrei' },
         { level: 'good', text: 'Lembrei com esforço' },
         { level: 'great', text: 'Zap!' },
@@ -26,32 +27,33 @@ export default function Card(props) {
         )
     })
 
-    function memory(event){
+    function memory(event) {
         setBackFaceButton('next')
-        if(event.target.innerHTML === 'Não lembrei'){
-            props.setFailure(props.fail +1 )
-            console.log(props.fail)
+        setBorder(event.target.classList[1])
+        if (event.target.innerHTML === 'Não lembrei') {
+            props.setFailure(props.fail + 1)
         }
     }
 
     function nextOne() {
+        setBorder('boderless')
         if ((index + 1) < props.userFlashcards.length) {
             setIndex(index + 1)
             setFrontFace(true)
             setBackFaceButton('buttons')
-        } else if(props.fail === 0) {
-            return props.setScreen(<Success setScreen={props.setScreen}/>)
-        } else if(props.fail > 0){
-            return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail}/>)
+        } else if (props.fail === 0) {
+            return props.setScreen(<Success setScreen={props.setScreen} />)
+        } else if (props.fail > 0) {
+            return props.setScreen(<Fail setScreen={props.setScreen} fail={props.fail} />)
         }
     }
 
     return (
         <>
             <header className='navbar'>
-                <img onClick={() => props.setScreen(<Start />)} src={miniLogo} alt="Zapp Recall"/>
+                <img onClick={() => props.setScreen(<Start />)} src={miniLogo} alt="Zapp Recall" />
             </header>
-            <div className='card' data-identifier="flashcard">
+            <div className={`card ${border}`} data-identifier="flashcard">
                 <div data-identifier="counter" className='flashcard-index'>{index + 1}/{props.userFlashcards.length}</div>
                 {frontFace === true ?
                     <div className='front-face'>
@@ -60,9 +62,8 @@ export default function Card(props) {
                         </div>
                         <div data-identifier="arrow" className='next'
                             onClick={() => setFrontFace(false)}>
-                            <img src={turn} alt="arrow"/>
+                            <img src={turn} alt="arrow" />
                         </div>
-
                     </div> :
                     <div className='back-face'>
                         <div className="back-face-question">{props.userFlashcards[index].question}</div>
